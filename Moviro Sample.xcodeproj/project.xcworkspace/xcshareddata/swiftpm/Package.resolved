@@ -1,0 +1,15 @@
+{
+  "originHash" : "b54d2137e3ec2003be6244ff4f0a529c156536b8e62080c858765428b1ee0e63",
+  "pins" : [
+    {
+      "identity" : "moviro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ylapps/MoViRo",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b8bfef2227776f20f441335998144458192ca123"
+      }
+    }
+  ],
+  "version" : 3
+}
