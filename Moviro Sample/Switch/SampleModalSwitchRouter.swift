@@ -14,13 +14,17 @@ protocol ModalSwitchRoutable {
 
 extension ModalSwitchRoutable where Self: AnyModalRouter {
     func showModalSwitch() {
-        presented = SampleModalSwitchRouter()
+        let switchRouter = SampleModalSwitchRouter()
+        switchRouter.onClose = { [weak self] in self?.presented = nil }
+        presented = switchRouter
     }
 }
 
 extension ModalSwitchRoutable where Self: AnyPushRouter {
     func showModalSwitch() {
-        stack?.presented = SampleModalSwitchRouter()
+        let switchRouter = SampleModalSwitchRouter()
+        switchRouter.onClose = { [weak self] in self?.presented = nil }
+        presented = switchRouter
     }
 }
 
@@ -116,6 +120,9 @@ final class SampleModalSwitchRouter: AnyModalSwitchRouter {
     private let contentB: ModalSwitchContentRouter
     private var showingA = true
 
+    @ObservationIgnored
+    var onClose: (() -> Void)?
+
     init() {
         contentA = ModalSwitchContentRouter(title: "Content A", iconName: "a.circle.fill")
         contentB = ModalSwitchContentRouter(title: "Content B", iconName: "b.circle.fill")
@@ -123,8 +130,8 @@ final class SampleModalSwitchRouter: AnyModalSwitchRouter {
 
         contentA.onToggle = { [weak self] in self?.toggleContent() }
         contentB.onToggle = { [weak self] in self?.toggleContent() }
-        contentA.onCloseAction = { [weak self] in self?.presenting?.presented = nil }
-        contentB.onCloseAction = { [weak self] in self?.presenting?.presented = nil }
+        contentA.onCloseAction = { [weak self] in self?.onClose?() }
+        contentB.onCloseAction = { [weak self] in self?.onClose?() }
     }
 
     func toggleContent() {

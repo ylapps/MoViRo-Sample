@@ -38,15 +38,6 @@ struct HomeView: BaseView {
                     model.router?.showModalSwitch()
                 }
             }
-
-            Section("Window Navigation") {
-                Button("Show Window Alert") {
-                    model.router?.showWindowAlert()
-                }
-                Button("Show Window Toast") {
-                    model.router?.showWindowToast()
-                }
-            }
         }
         .navigationTitle("Home")
     }

@@ -13,17 +13,12 @@ protocol HomeRouterInterface:
     PushSwitchRoutable,
     SheetRoutable,
     FullScreenRoutable,
-    ModalSwitchRoutable,
-    WindowAlertRoutable,
-    WindowToastRoutable {}
+    ModalSwitchRoutable {}
 
 // MARK: - Router
 
 /// Push router for the home screen. Coordinates all navigation from the home view.
 final class HomeRouter: PushRouter<HomeView>, HomeRouterInterface {
-
-    @ObservationIgnored
-    weak var windowModel: SampleWindowModel?
 
     override func makeModel() -> HomeModel {
         HomeModel(router: self)

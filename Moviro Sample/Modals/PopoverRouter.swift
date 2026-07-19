@@ -20,7 +20,7 @@ extension PopoverRoutable where Self: AnyModalRouter {
 
 extension PopoverRoutable where Self: AnyPushRouter {
     func showPopover() {
-        stack?.presented = PopoverRouter()
+        presented = PopoverRouter()
     }
 }
 

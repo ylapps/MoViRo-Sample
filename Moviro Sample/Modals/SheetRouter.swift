@@ -20,7 +20,7 @@ extension SheetRoutable where Self: AnyModalRouter {
 
 extension SheetRoutable where Self: AnyPushRouter {
     func showSheet() {
-        stack?.presented = SheetRouter()
+        presented = SheetRouter()
     }
 }
 

@@ -27,34 +27,20 @@ The sample app showcases every navigation pattern provided by Moviro:
 - **FullScreenView** -- presented as `.fullScreen`
 - **PopoverView** -- presented as `.popover`
 
-### Tab Bar
-- **SampleAppRouter** -- `AnyTabBarRouter` with Home and Split tabs
-
-### Split View
-- **SampleSplitRouter** -- `AnySplitRouter` with a sidebar and detail column
-- **SidebarView** -- list of items that push details into the detail column
-
 ### Switch Routers
 - **SampleModalSwitchRouter** -- swaps between two modal content screens without dismissing
 - **SamplePushSwitchRouter** -- swaps between two pushed screens in-place
-
-### Window Router
-- **SampleWindowRouter** -- demonstrates `WindowRouter` for app-level overlays
-- **WindowAlertRouter** -- alert displayed in a separate `UIWindow`
-- **WindowToastRouter** -- auto-dismissing toast banner in its own `UIWindow`
 
 ## Project Structure
 
 ```
 Moviro Sample/
-├── Moviro_SampleApp.swift    # App entry point (uses SampleRootScene)
-├── SampleAppRouter.swift     # TabBar root + SampleRootView/Scene
+├── Moviro_SampleApp.swift    # App entry point
+├── SampleAppRouter.swift     # Root router + SampleRootView
 ├── Detail/                   # Push navigation example
-├── Home/                     # Home tab (push, modal, window triggers)
+├── Home/                     # Home screen (push & modal triggers)
 ├── Modals/                   # Sheet, FullScreen, Popover examples
-├── Split/                    # NavigationSplitView example
-├── Switch/                   # Modal & Push switch examples
-└── Window/                   # Window-level alerts & toasts
+└── Switch/                   # Modal & Push switch examples
 ```
 
 ## License

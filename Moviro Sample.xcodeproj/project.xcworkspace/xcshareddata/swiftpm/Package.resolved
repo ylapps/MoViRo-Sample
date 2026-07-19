@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ylapps/MoViRo",
       "state" : {
-        "branch" : "main",
-        "revision" : "b8bfef2227776f20f441335998144458192ca123"
+        "revision" : "4fc86bc8f75c13ed93c902994d3280cf2eaf207a",
+        "version" : "1.2.5"
       }
     }
   ],

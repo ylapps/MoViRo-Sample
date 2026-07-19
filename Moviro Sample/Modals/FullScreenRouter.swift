@@ -20,7 +20,7 @@ extension FullScreenRoutable where Self: AnyModalRouter {
 
 extension FullScreenRoutable where Self: AnyPushRouter {
     func showFullScreen() {
-        stack?.presented = FullScreenRouter()
+        presented = FullScreenRouter()
     }
 }
 

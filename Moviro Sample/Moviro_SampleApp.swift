@@ -5,11 +5,13 @@
 //  Created by Yevhenii Lytvynenko on 07.06.2026.
 //
 
-import Moviro
+import SwiftUI
 
 @main
 struct Moviro_SampleApp: App {
     var body: some Scene {
-        SampleRootScene()
+        WindowGroup {
+            SampleRootView()
+        }
     }
 }

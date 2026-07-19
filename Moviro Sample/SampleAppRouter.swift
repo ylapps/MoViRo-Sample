@@ -7,28 +7,15 @@ import Moviro
 
 // MARK: - App Entry Point
 
-/// Root router of the sample app. Demonstrates `TabBarRouter` with two tabs.
-final class SampleAppRouter: AnyTabBarRouter {
+/// Root router of the sample app.
+@Observable
+@MainActor
+final class SampleAppRouter {
 
     let homeStack: HomeNavigationStackRouter
 
     init() {
-        let homeStack = HomeNavigationStackRouter()
-        let splitTab = SampleSplitRouter()
-        self.homeStack = homeStack
-
-        super.init(tabs: [
-            .init(
-                router: homeStack,
-                title: "Home",
-                image: UIImage(systemName: "house")!
-            ),
-            .init(
-                router: splitTab,
-                title: "Split",
-                image: UIImage(systemName: "sidebar.left")!
-            )
-        ])
+        self.homeStack = HomeNavigationStackRouter()
     }
 }
 
@@ -38,30 +25,10 @@ struct SampleRootView: View {
     @State private var router = SampleAppRouter()
 
     var body: some View {
-        router.makeView()
+        router.homeStack.makeView()
     }
 }
 
-/// Convenience scene for embedding the sample flow with window support.
-///
-/// Use in your `App.body`:
-/// ```swift
-/// @main
-/// struct MyApp: App {
-///     var body: some Scene {
-///         SampleRootScene()
-///     }
-/// }
-/// ```
-struct SampleRootScene: Scene {
-
-    @State private var router = SampleWindowRouter()
-
-    var body: some Scene {
-        router.makeScene()
-    }
-}
-
-#Preview("Sample App (Window Router)") {
-    SampleWindowRouter().makeView()
+#Preview("Sample App") {
+    SampleRootView()
 }
