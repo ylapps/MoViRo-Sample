@@ -27,7 +27,12 @@ extension PopoverRoutable where Self: AnyPushRouter {
 // MARK: - Model
 
 @Observable
-final class PopoverModel: Model<PopoverRouter> {}
+final class PopoverModel: Model<PopoverRouter> {
+
+    func dismiss() {
+        router?.close()
+    }
+}
 
 // MARK: - Router
 

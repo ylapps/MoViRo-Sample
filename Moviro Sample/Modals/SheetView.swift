@@ -29,10 +29,17 @@ struct SheetView: BaseView {
                 .foregroundStyle(.secondary)
 
             Button("Dismiss") {
-                model.router?.requestClose()
+                model.dismiss()
             }
             .buttonStyle(.borderedProminent)
         }
         .padding()
     }
+}
+
+#Preview {
+    ModalPreviewRouter {
+        SheetRouter()
+    }
+    .makeView()
 }

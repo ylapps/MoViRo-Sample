@@ -8,7 +8,7 @@ import Moviro
 // MARK: - View
 
 /// A pushed detail screen. Demonstrates presenting modals from a pushed context
-/// and using `requestClose()` to pop back.
+/// and popping back with `close()`.
 struct DetailView: BaseView {
 
     @State var model: DetailModel
@@ -21,19 +21,19 @@ struct DetailView: BaseView {
         List {
             Section("Modal from Detail") {
                 Button("Present Sheet") {
-                    model.router?.showSheet()
+                    model.showSheet()
                 }
                 Button("Present Full Screen") {
-                    model.router?.showFullScreen()
+                    model.showFullScreen()
                 }
                 Button("Present Popover") {
-                    model.router?.showPopover()
+                    model.showPopover()
                 }
             }
 
             Section {
                 Button("Close (Pop)", role: .destructive) {
-                    model.router?.requestClose()
+                    model.close()
                 }
             }
         }

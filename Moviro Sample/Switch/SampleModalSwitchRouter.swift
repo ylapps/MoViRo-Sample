@@ -139,3 +139,10 @@ final class SampleModalSwitchRouter: AnyModalSwitchRouter {
         current = showingA ? contentA : contentB
     }
 }
+
+#Preview {
+    ModalPreviewRouter {
+        SampleModalSwitchRouter()
+    }
+    .makeView()
+}

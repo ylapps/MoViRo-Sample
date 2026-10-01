@@ -27,7 +27,12 @@ extension SheetRoutable where Self: AnyPushRouter {
 // MARK: - Model
 
 @Observable
-final class SheetModel: Model<SheetRouter> {}
+final class SheetModel: Model<SheetRouter> {
+
+    func dismiss() {
+        router?.close()
+    }
+}
 
 // MARK: - Router
 

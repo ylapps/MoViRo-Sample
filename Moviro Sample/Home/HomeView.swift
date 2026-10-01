@@ -7,7 +7,8 @@ import Moviro
 
 // MARK: - View
 
-/// Root view of the Home tab. Demonstrates push and modal navigation triggers.
+/// Root screen of the sample. Every button forwards to the model, which asks
+/// its router for the navigation.
 struct HomeView: BaseView {
 
     @State var model: HomeModel
@@ -20,23 +21,59 @@ struct HomeView: BaseView {
         List {
             Section("Push Navigation") {
                 Button("Push Detail") {
-                    model.router?.showDetail()
+                    model.showDetail()
                 }
                 Button("Push Switch Screen") {
-                    model.router?.showPushSwitch()
+                    model.showPushSwitch()
                 }
             }
 
             Section("Modal Navigation") {
                 Button("Present Sheet") {
-                    model.router?.showSheet()
+                    model.showSheet()
                 }
                 Button("Present Full Screen") {
-                    model.router?.showFullScreen()
+                    model.showFullScreen()
                 }
                 Button("Present Modal Switch") {
-                    model.router?.showModalSwitch()
+                    model.showModalSwitch()
                 }
+            }
+
+            Section {
+                Button {
+                    model.pickColor()
+                } label: {
+                    LabeledContent("Favorite Color", value: model.favoriteColor?.title ?? "Not Set")
+                }
+                Button {
+                    model.editNickname()
+                } label: {
+                    LabeledContent("Nickname", value: model.nickname.isEmpty ? "Not Set" : model.nickname)
+                }
+            } header: {
+                Text("Close Reasons")
+            } footer: {
+                Text("The color picker is a sheet and the nickname editor a pushed screen. Each closes with a reason that Home receives.")
+            }
+
+            Section {
+                Button("Reset Choices", role: .destructive) {
+                    model.resetChoices()
+                }
+                .disabled(!model.hasChoices)
+            } header: {
+                Text("Alerts")
+            } footer: {
+                Text("A confirmation presented through AlertRoutable.")
+            }
+
+            Section {
+                LabeledContent("Home Appeared", value: model.appearCount.formatted())
+            } header: {
+                Text("Lifecycle")
+            } footer: {
+                Text("onAppear runs again when a pushed screen is popped. A sheet or full-screen modal over Home does not make it disappear.")
             }
         }
         .navigationTitle("Home")

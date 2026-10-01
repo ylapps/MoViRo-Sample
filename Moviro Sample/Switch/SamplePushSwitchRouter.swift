@@ -113,3 +113,7 @@ final class SamplePushSwitchRouter: AnyPushSwitchRouter {
         current = showingA ? contentA : contentB
     }
 }
+
+#Preview {
+    NavigationStackRouter(root: SamplePushSwitchRouter(), transition: .fullScreen).makeView()
+}

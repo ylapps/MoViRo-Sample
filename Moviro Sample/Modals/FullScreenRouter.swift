@@ -27,7 +27,12 @@ extension FullScreenRoutable where Self: AnyPushRouter {
 // MARK: - Model
 
 @Observable
-final class FullScreenModel: Model<FullScreenRouter> {}
+final class FullScreenModel: Model<FullScreenRouter> {
+
+    func dismiss() {
+        router?.close()
+    }
+}
 
 // MARK: - Router
 

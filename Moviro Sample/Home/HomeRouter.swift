@@ -13,7 +13,10 @@ protocol HomeRouterInterface:
     PushSwitchRoutable,
     SheetRoutable,
     FullScreenRoutable,
-    ModalSwitchRoutable {}
+    ModalSwitchRoutable,
+    ColorPickerRoutable,
+    NicknameRoutable,
+    AlertRoutable {}
 
 // MARK: - Router
 
@@ -30,11 +33,7 @@ final class HomeRouter: PushRouter<HomeView>, HomeRouterInterface {
 /// Wraps the home push flow in a `NavigationStack`.
 final class HomeNavigationStackRouter: NavigationStackRouter {
 
-    let homeRouter: HomeRouter
-
     init() {
-        let homeRouter = HomeRouter()
-        self.homeRouter = homeRouter
-        super.init(root: homeRouter, transition: .fullScreen)
+        super.init(root: HomeRouter(), transition: .fullScreen)
     }
 }
