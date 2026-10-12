@@ -49,6 +49,18 @@ final class HomeModel: Model<any HomeRouterInterface> {
         router?.showModalSwitch()
     }
 
+    func showFadeCover(style: FadeCoverStyle) {
+        router?.showFadeCover(style: style)
+    }
+
+    func showZoomGallery() {
+        router?.showZoomGallery()
+    }
+
+    func showDeepLinkBuilder() {
+        router?.showDeepLinkBuilder()
+    }
+
     func pickColor() {
         router?.showColorPicker { [weak self] color in
             // `nil` is Cancel: keep the color there was.

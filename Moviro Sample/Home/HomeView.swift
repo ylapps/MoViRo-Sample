@@ -41,6 +41,32 @@ struct HomeView: BaseView {
             }
 
             Section {
+                Button("Fade In Full Screen") {
+                    model.showFadeCover(style: .fade)
+                }
+                Button("Scale In Full Screen") {
+                    model.showFadeCover(style: .scale)
+                }
+                Button("Zoom Gallery") {
+                    model.showZoomGallery()
+                }
+            } header: {
+                Text("Transitions")
+            } footer: {
+                Text("Covers with a transition of their own in place of the system slide, and a push that grows out of the tapped card (iOS 18).")
+            }
+
+            Section {
+                Button("Deep Link Builder") {
+                    model.showDeepLinkBuilder()
+                }
+            } header: {
+                Text("Deep Links")
+            } footer: {
+                Text("Compose a chain of pushes and presentations and open it in one go, the way a deep link does.")
+            }
+
+            Section {
                 Button {
                     model.pickColor()
                 } label: {

@@ -16,7 +16,10 @@ protocol HomeRouterInterface:
     ModalSwitchRoutable,
     ColorPickerRoutable,
     NicknameRoutable,
-    AlertRoutable {}
+    AlertRoutable,
+    FadeCoverRoutable,
+    ZoomGalleryRoutable,
+    DeepLinkBuilderRoutable {}
 
 // MARK: - Router
 
