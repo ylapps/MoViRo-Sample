@@ -18,6 +18,14 @@ final class DeepLinkBuilderModel: Model<any DeepLinkBuilderRouterInterface> {
 
     var isEmpty: Bool { link.steps.isEmpty }
 
+    var animatesOnlyLast: Bool {
+        get { link.animatesOnlyLast }
+        set {
+            link.animatesOnlyLast = newValue
+            save()
+        }
+    }
+
     // MARK: Initialization
 
     override init(router: (any DeepLinkBuilderRouterInterface)?) {

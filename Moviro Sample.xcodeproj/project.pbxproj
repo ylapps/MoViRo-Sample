@@ -355,7 +355,7 @@
 			repositoryURL = "https://github.com/ylapps/MoViRo";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.5.3;
+				minimumVersion = 1.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

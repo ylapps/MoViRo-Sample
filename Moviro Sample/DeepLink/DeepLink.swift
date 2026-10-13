@@ -75,6 +75,23 @@ struct DeepLink: Equatable, Codable {
 
     var steps: [DeepLinkStep] = []
 
+    /// Every step but the last is put on screen without animation, so the
+    /// link lands at once and only its last screen moves — what a deep link
+    /// arriving at the app should do. Off, every level animates in turn.
+    var animatesOnlyLast = true
+
+    init(steps: [DeepLinkStep] = [], animatesOnlyLast: Bool = true) {
+        self.steps = steps
+        self.animatesOnlyLast = animatesOnlyLast
+    }
+
+    /// Links saved before `animatesOnlyLast` existed decode with it on.
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        steps = try container.decode([DeepLinkStep].self, forKey: .steps)
+        animatesOnlyLast = try container.decodeIfPresent(Bool.self, forKey: .animatesOnlyLast) ?? true
+    }
+
     /// push · push · present · present · present with stack · push · push ·
     /// present · present · present.
     static let example = DeepLink(steps: [
@@ -99,19 +116,26 @@ struct DeepLink: Equatable, Codable {
         var cursor = Cursor.push(start)
         for (index, step) in steps.enumerated() {
             let context = DeepLinkStepContext(index: index, steps: steps)
+            // `appearsAnimated` is the router's own say on how it is shown,
+            // whether its presenter is already on screen or shows it on
+            // appearing — so one flag per router is the whole of it.
+            let animates = !animatesOnlyLast || index == steps.count - 1
             switch step {
             case .push:
                 guard case .push(let current) = cursor else { return }
                 let router = DeepLinkPushStepRouter(context: context)
+                router.appearsAnimated = animates
                 current.pushed = router
                 cursor = .push(router)
             case .sheet, .fullScreen, .popover:
                 let router = DeepLinkModalStepRouter(context: context, transition: step.modalTransition)
+                router.appearsAnimated = animates
                 cursor.present(router)
                 cursor = .modal(router)
             case .sheetWithStack, .fullScreenWithStack:
                 let root = DeepLinkPushStepRouter(context: context)
                 let stack = NavigationStackRouter(root: root, transition: step.modalTransition)
+                stack.appearsAnimated = animates
                 cursor.present(stack)
                 cursor = .push(root)
             }

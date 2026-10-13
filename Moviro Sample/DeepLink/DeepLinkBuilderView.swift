@@ -46,6 +46,14 @@ struct DeepLinkBuilderView: BaseView {
             }
 
             Section {
+                Toggle("Only the Last Screen Animates", isOn: $model.animatesOnlyLast)
+            } header: {
+                Text("Animation")
+            } footer: {
+                Text("On, every step but the last is put on screen without animation and the link lands at once. Off, every level animates in turn, which takes about half a second per modal.")
+            }
+
+            Section {
                 Button("Open From Root") {
                     model.openFromRoot()
                 }
